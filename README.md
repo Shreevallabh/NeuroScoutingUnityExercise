@@ -60,11 +60,11 @@ Rules:
 	
 	
 Logic and my development process:
-	- I duplicated the original game and then started building my game on the original codebase to keep the game's logic and code similar to the original one.
-	- The game ReactRed parses the XML session file and checks for the following two attributes in addition to the default ones:
-			- If the color of the stimulus is Red or not.
-			- If the position of the stimulus is randomized or not.
-	- The main logic of the game contains in the file "ReactRed.cs". For each trial, if the color of the stimulus is red, then the stimuluss' color is changed to red. Additionally, while checking the result, if user gives feedback to the red square then a proper message is showed on screen.
-	- User's response time does not matter if the color of the stimulus is Red. Whether user responds early or late, it will still be counted as a failed trial case.
-	- At the end of the game, all the important information in the log file.
+- I duplicated the original game and then started building my game on the original codebase to keep the game's logic and code similar to the original one.
+- The game ReactRed parses the XML session file and checks for the following two attributes in addition to the default ones:
+- If the color of the stimulus is Red or not.
+- If the position of the stimulus is randomized or not.
+- The main logic of the game contains in the file "ReactRed.cs". For each trial, if the color of the stimulus is red, then the stimuluss' color is changed to red. Additionally, while checking the result, if user gives feedback to the red square then a proper message is showed on screen.
+- User's response time does not matter if the color of the stimulus is Red. Whether user responds early or late, it will still be counted as a failed trial case.
+- At the end of the game, all the important information in the log file.
 	
