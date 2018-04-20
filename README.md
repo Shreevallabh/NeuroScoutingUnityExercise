@@ -70,4 +70,4 @@ At the end of the session, a log file will be created with the detailed informat
 - At the end of the game, all the important information is written in the log file.
 
 
-This project was made using Unity 2017.2.0f3	
+This project was made using Unity 2017.2.0f3
