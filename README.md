@@ -68,4 +68,6 @@ At the end of the session, a log file will be created with the detailed informat
 - Additionally, while checking the result, if user gives feedback to the red square then a proper message is showed on screen.
 - User's response time does not matter if the color of the stimulus is Red. Whether user responds early or late, it will still be counted as a failed trial case.
 - At the end of the game, all the important information is written in the log file.
-	
+
+
+This project was made using Unity 2017.2.0f3	
