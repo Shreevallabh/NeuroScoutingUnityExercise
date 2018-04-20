@@ -54,9 +54,9 @@ For your submission, extend this README documenting the rules of the new game, h
 This game has the functionality of the original game "React" but with one addition to the game.
 
 Rules:
--Press SPACEBAR as soon as a white square(stimulus) is shown on the screen.
--DO NOT press SPACEBAR when a red square is shown instead of the white one.
--At the end of the session, a log file will be created with the detailed information about the session.
+Press SPACEBAR as soon as a white square(stimulus) is shown on the screen.
+DO NOT press SPACEBAR when a red square is shown instead of the white one.
+At the end of the session, a log file will be created with the detailed information about the session.
 	
 	
 Logic and my development process:
