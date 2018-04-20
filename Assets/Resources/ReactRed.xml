@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<session>
+  <settings>
+    <general gameType="ReactRed" shuffle="true" />
+    <reactRed duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" />
+  </settings>
+  <trials>
+    <trial delay="0.2" isRed="false" isRandomPos="false"/>
+    <trial delay="0.3" isRed="false" isRandomPos="false"/>
+    <trial delay="0.3" isRed="true" isRandomPos="false"/>
+    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="100" maxX ="120" minY ="50" maxY ="150"/>
+    <trial delay="0.5" isRed="true" isRandomPos="false"/>
+    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="100" maxX ="120" minY ="50" maxY ="150"/>
+    <trial delay="1.0" isRed="true" isRandomPos="true"  minX ="100" maxX ="120" minY ="50" maxY ="150"/>
+    <trial delay="1.0" isRed="true" isRandomPos="false"/>
+    <trial delay="1.0" isRed="false" isRandomPos="false"/>
+  </trials>
+</session>
