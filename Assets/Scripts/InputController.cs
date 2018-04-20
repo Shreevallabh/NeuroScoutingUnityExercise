@@ -63,8 +63,6 @@ public class InputController : MonoBehaviour
 	/// </summary>
 	void CheckForInput()
 	{
-
-    
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
          

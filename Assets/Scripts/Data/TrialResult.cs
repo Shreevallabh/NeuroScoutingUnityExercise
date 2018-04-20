@@ -35,10 +35,19 @@ public class TrialResult
 	/// </summary>
 	public float accuracy = 0;
 
+    /// <summary>
+    /// If the stimulus was red or not.
+    /// </summary>
+    public bool isRed = false;
 
-
-    public bool isRed =false;
+    /// <summary>
+    /// X axis position of the stimulus.
+    /// </summary>
     public int positionX = 0;
+
+    /// <summary>
+    /// Y axis position of the stimulus.
+    /// </summary>
     public int positionY = 0;
 
 

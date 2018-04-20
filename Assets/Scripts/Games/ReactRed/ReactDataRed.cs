@@ -20,6 +20,8 @@ public class ReactDataRed : GameData
     public const string ATTRIBUTE_MAXX = "maxX";
     public const string ATTRIBUTE_MINY = "minY";
     public const string ATTRIBUTE_MAXY = "maxY";
+    public const string ATTRIBUTE_FIXEDX = "fixedX";
+    public const string ATTRIBUTE_FIXEDY = "fixedY";
 
 
 
@@ -37,12 +39,38 @@ public class ReactDataRed : GameData
 	/// The visibility Duration for the Stimulus.
 	/// </summary>
 	private float duration = 0;
+    /// <summary>
+    /// If the stimulus is Red or not.
+    /// </summary>
     private bool isRed = false;
+    /// <summary>
+    /// If the trial requires stimulus to be at random position or not.
+    /// </summary>
     private bool isRandomPos = false;
+    /// <summary>
+    /// Minimum X coordinate value of the stimulus if its position is random.
+    /// </summary>
     private int minX = 0;
+    /// <summary>
+    /// Maximum X coordinate value of the stimulus if its position is random.
+    /// </summary>
     private int maxX = 0;
+    /// <summary>
+    /// Minimum Y coordinate value of the stimulus if its position is random.
+    /// </summary>
     private int minY = 0;
+    /// <summary>
+    /// Maximum Y coordinate value of the stimulus if its position is random.
+    /// </summary>
     private int maxY = 0;
+    /// <summary>
+    /// X coordinate value of the stimulus if its position is not random.
+    /// </summary>
+    private int fixedX = 0;
+    /// <summary>
+    /// Y coordinate value of the stimulus if its position is not random.
+    /// </summary>
+    private int fixedY = 0;
 
     #region ACCESSORS
 
@@ -99,6 +127,7 @@ public class ReactDataRed : GameData
             return maxX;
         }
     }
+
     public int MinY
     {
         get
@@ -106,11 +135,28 @@ public class ReactDataRed : GameData
             return minY;
         }
     }
+
     public int MaxY
     {
         get
         {
             return maxY;
+        }
+    }
+
+    public int FixedX
+    {
+        get
+        {
+            return fixedX;
+        }
+    }
+
+    public int FixedY
+    {
+        get
+        {
+            return fixedY;
         }
     }
 

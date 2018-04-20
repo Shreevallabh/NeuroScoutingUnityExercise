@@ -12,13 +12,13 @@ using System.Collections.Generic;
 /// </summary>
 public class ReactRed : GameBase
 {
-	const string INSTRUCTIONS = " Press <color=cyan>Spacebar</color> as soon as you see the square. Do not press <color=cyan>Spacebar</color> if the square is Red";
+	const string INSTRUCTIONS = " Press <color=cyan>Spacebar</color> as soon as you see the square. Do not press <color=cyan>Spacebar</color> if the square is Red.";
 	const string FINISHED = "FINISHED!";
 	const string RESPONSE_GUESS = "No Guessing!";
 	const string RESPONSE_CORRECT = "Good!";
 	const string RESPONSE_TIMEOUT = "Missed it!";
 	const string RESPONSE_SLOW = "Too Slow!";
-    const string RESPONSE_RED = "Responded to wrong color!";
+    const string RESPONSE_RED = "Responded to Red!";
     const string RESPONSE_RED_IGNORED = "Nice! Ignored red";
 
 	Color RESPONSE_COLOR_GOOD = Color.green;
@@ -40,9 +40,15 @@ public class ReactRed : GameBase
 	/// The instructions text label.
 	/// </summary>
 	public Text instructionsText;
-
+    /// <summary>
+    /// Position of the stimulus on the screen.
+    /// </summary>
     Vector3 StimRandomPos = new Vector3(0, 0, 0);
+    /// <summary>
+    /// If the current color of the stimulus is red or not.
+    /// </summary>
     bool currentColorIsRed = false;
+
 
 
 
@@ -91,33 +97,38 @@ public class ReactRed : GameBase
 
         ReactTrialRed RTR = t as ReactTrialRed;
 
+        // Set color of the stimulus as given in the trial
         if(RTR.isRed)
         {
             stim.GetComponent<Image>().color = Color.red;
             currentColorIsRed = true;
-
         }
+
         if (!RTR.isRed)
         {
             stim.GetComponent<Image>().color = Color.white;
             currentColorIsRed = false;
         }
-        Debug.Log("IS random pos: + " +RTR.isRandomPos);
-       
+
+        // Set position of the stimulus as given in the trial.
         if (RTR.isRandomPos)
         {
-           
-           
-
             StimRandomPos.x = GetRandomX(RTR.minX, RTR.maxX);
             StimRandomPos.y = GetRandomY(RTR.minY, RTR.maxY);
 
             stim.GetComponent<RectTransform>().anchoredPosition = StimRandomPos;
-            Debug.Log(stim.GetComponent<RectTransform>().position);
+            GUILog.Log("Current stimulus position: " + stim.GetComponent<RectTransform>().position.ToString());
+        }
+        else
+        {
+            StimRandomPos.x = RTR.fixedX;
+            StimRandomPos.y = RTR.fixedY;
+            stim.GetComponent<RectTransform>().anchoredPosition = StimRandomPos;
+            GUILog.Log("Current stimulus position: " + stim.GetComponent<RectTransform>().position.ToString());
         }
 
+ 
 		stim.SetActive(true);
-
 		yield return new WaitForSeconds(((ReactTrialRed)t).duration);
 		stim.SetActive(false);
 		EndInput();
@@ -166,9 +177,7 @@ public class ReactRed : GameBase
 		r.responseTime = time;
 		if (time == 0)
 		{
-			// No response.
-		
-
+			// If no response, check if stimulus has valid color or not (Valid color = white, not valid color = red).
             if (IsValidStimulusColor(t))
             {
                 GUILog.Log("Fail! No response!");
@@ -176,16 +185,16 @@ public class ReactRed : GameBase
             }
             else
             {
-                GUILog.Log("Nice! You ignored the red square!");
+                GUILog.Log("Success! Ignored the red square!");
                 DisplayFeedback(RESPONSE_RED_IGNORED, RESPONSE_COLOR_GOOD);
+                r.success = true;
             }
 
             
 		}
 		else
 		{
-            Debug.Log(Time.deltaTime);
-			if (IsGuessResponse(time))
+			if (IsGuessResponse(time) && IsValidStimulusColor(t))
 			{
 				// Responded before the guess limit, aka guessed.
 				DisplayFeedback(RESPONSE_GUESS, RESPONSE_COLOR_BAD);
@@ -211,13 +220,24 @@ public class ReactRed : GameBase
 			}
 			else
 			{
-				// Responded too slow.
-				DisplayFeedback(RESPONSE_SLOW, RESPONSE_COLOR_BAD);
-				GUILog.Log("Fail! Slow response! responseTime = {0}", time);
+                // Responded too slow.
+                if (IsValidStimulusColor(t))
+                {
+                    DisplayFeedback(RESPONSE_SLOW, RESPONSE_COLOR_BAD);
+                    GUILog.Log("Fail! Slow response! responseTime = {0}", time);
+                }
+                else
+                {
+                    DisplayFeedback(RESPONSE_RED, RESPONSE_COLOR_BAD);
+                    r.success = false;
+                    r.accuracy = GetAccuracy(t, time);
+                    GUILog.Log("Fail! Responded to wrong color");
+                }
 			}
 
 		}
 
+        // Preparing and writing data in result
         if(currentColorIsRed)
         {
             r.isRed = true;
@@ -226,11 +246,8 @@ public class ReactRed : GameBase
         {
             r.isRed = false;
         }
-
         r.positionX = (int)StimRandomPos.x;
         r.positionY = (int)StimRandomPos.y;
-
-
         sessionData.results.Add(r);
 	}
 
@@ -285,11 +302,13 @@ public class ReactRed : GameBase
 		return data.ResponseTimeLimit <= 0 || time < data.ResponseTimeLimit;
 	}
 
+
+    /// <summary>
+    /// Returns false if the color is red. Every other color is checked as true.
+    /// </summary>
     protected bool IsValidStimulusColor(Trial t)
     {
         ReactTrialRed RTR = t as ReactTrialRed;
-        //ReactDataRed data = sessionData.gameData as ReactDataRed;
-        Debug.Log(" print data color:" + RTR.isRed);
         if (RTR.isRed)
         {
             return false;
@@ -300,11 +319,19 @@ public class ReactRed : GameBase
         }
     }
 
+
+    /// <summary>
+    /// Returns Random X coordinate value which is between given parameters.
+    /// </summary>
     protected int GetRandomX(int minX, int maxX)
     {
         return (int)Random.Range(minX, maxX);
     }
 
+
+    /// <summary>
+    /// Returns Random Y coordinate value which is between given parameters.
+    /// </summary>
     protected int GetRandomY(int minY, int maxY)
     {
         return (int)Random.Range(minY, maxY);

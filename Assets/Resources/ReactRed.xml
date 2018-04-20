@@ -5,14 +5,14 @@
     <reactRed duration="1" guessTimeLimit="0.125" responseTimeLimit =".8" />
   </settings>
   <trials>
-    <trial delay="0.2" isRed="false" isRandomPos="false"/>
-    <trial delay="0.3" isRed="false" isRandomPos="false"/>
-    <trial delay="0.3" isRed="true" isRandomPos="false"/>
-    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="100" maxX ="120" minY ="50" maxY ="150"/>
-    <trial delay="0.5" isRed="true" isRandomPos="false"/>
-    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="100" maxX ="120" minY ="50" maxY ="150"/>
-    <trial delay="1.0" isRed="true" isRandomPos="true"  minX ="100" maxX ="120" minY ="50" maxY ="150"/>
-    <trial delay="1.0" isRed="true" isRandomPos="false"/>
-    <trial delay="1.0" isRed="false" isRandomPos="false"/>
+    <trial delay="0.2" isRed="false" isRandomPos="false" fixedX ="00" fixedY ="0"/>
+    <trial delay="0.3" isRed="false" isRandomPos="false" fixedX ="0" fixedY ="90"/>
+    <trial delay="0.3" isRed="true" isRandomPos="false" fixedX ="0" fixedY ="80"/>
+    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="50" maxX ="100" minY ="50" maxY ="100"/>
+    <trial delay="0.5" isRed="true" isRandomPos="false" fixedX ="50" fixedY ="0"/>
+    <trial delay="0.5" isRed="false" isRandomPos="true" minX ="0" maxX ="80" minY ="80" maxY ="110"/>
+    <trial delay="1.0" isRed="false" isRandomPos="true"  minX ="10" maxX ="50" minY ="20" maxY ="60"/>
+    <trial delay="1.0" isRed="true" isRandomPos="false" fixedX ="0" fixedY ="0"/>
+    <trial delay="1.0" isRed="true" isRandomPos="false" fixedX ="0" fixedY ="50"/>
   </trials>
 </session>

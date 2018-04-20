@@ -14,12 +14,38 @@ public class ReactTrialRed : Trial
 	/// The duration the stimulus will be shown for.
 	/// </summary>
 	public float duration = 0;
+    /// <summary>
+    /// If the stimulus is red or not.
+    /// </summary>
     public bool isRed = false;
+    /// <summary>
+    /// If the position of stimulus is random or not.
+    /// </summary>
     public bool isRandomPos = false;
+    /// <summary>
+    /// Minimum X coordinate value of the stimulus if its position is random.
+    /// </summary>
     public int minX = 0;
+    /// <summary>
+    /// Maximum X coordinate value of the stimulus if its position is random.
+    /// </summary>
     public int maxX = 0;
+    /// <summary>
+    /// Minimum Y coordinate value of the stimulus if its position is random.
+    /// </summary>
     public int minY = 0;
+    /// <summary>
+    /// Maximum Y coordinate value of the stimulus if its position is random.
+    /// </summary>
     public int maxY = 0;
+    /// <summary>
+    /// X coordinate value of the stimulus if its position is not random.
+    /// </summary>
+    public int fixedX = 0;
+    /// <summary>
+    /// Y coordinate value of the stimulus if its position is not random.
+    /// </summary>
+    public int fixedY = 0;
 
 
 
@@ -66,24 +92,36 @@ public class ReactTrialRed : Trial
         if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_ISRANDOMPOS, ref isRandomPos, true))
         {
             isRandomPos = data.IsRandomPos;
-            Debug.Log("zzzzzzzzzzzzzzzzzzzz" + isRandomPos);
         }
 
         if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_MINX, ref minX, true))
         {
             minX = data.MinX;
         }
+
         if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_MAXX, ref maxX, true))
         {
             maxX = data.MaxX;
         }
+
         if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_MINY, ref minY, true))
         {
             minY = data.MinY;
         }
+
         if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_MAXY, ref maxY, true))
         {
             maxY = data.MaxY;
+        }
+
+        if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_FIXEDX, ref fixedX, true))
+        {
+            fixedX = data.FixedX;
+        }
+
+        if (!XMLUtil.ParseAttribute(n, ReactDataRed.ATTRIBUTE_FIXEDY, ref fixedY, true))
+        {
+            fixedX = data.FixedY;
         }
 
 
